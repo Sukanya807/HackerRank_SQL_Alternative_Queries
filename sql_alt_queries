@@ -1,0 +1,68 @@
+--1. P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+
+--Write a query to print the pattern P(20).
+
+DECLARE @counter INT;
+
+SET @counter = 20;
+
+WHILE @counter > 0 
+BEGIN
+
+PRINT(REPLICATE('* ', @counter))
+SET @counter = @counter - 1
+
+END;
+
+-----------------------------------------------------------------------------------
+
+--2. P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+
+--Write a query to print the pattern P(20).
+
+DECLARE @counter INT;
+
+SET @counter = 1;
+
+WHILE @counter <= 20
+BEGIN
+
+PRINT(REPLICATE('* ', @counter))
+SET @counter = @counter+1;
+
+END;
+
+------------------------------------------------------------------------------------
+
+--3. Write a query to print all prime numbers less than or equal to . Print your result on a single line, 
+--and use the ampersand () character as your separator (instead of a space).
+
+--For example, the output for all prime numbers  would be:
+
+CREATE TABLE prime_numbers (number INT);
+
+DECLARE @nr INT;
+DECLARE @divider INT;
+DECLARE @prime BIT;
+
+SET @nr =1;
+
+WHILE @nr <=1000
+BEGIN
+SET @divider = @nr -1;
+SET @prime = 1;
+
+    WHILE @divider > 1
+    BEGIN
+         IF @nr % @divider = 0
+         SET @prime = 0;
+         SET @divider = @divider-1;
+    END
+
+  IF @prime = 1 AND @nr <> 1
+     INSERT INTO prime_numbers (number) VALUES (@nr);
+
+SET @nr = @nr+1
+END
+
+SELECT STRING_AGG(number, '&') FROM prime_numbers;
