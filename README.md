@@ -1,0 +1,1 @@
+# HackerRank_SQL_Alternative_Queries
